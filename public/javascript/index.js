@@ -2,7 +2,7 @@ const charactersAPI = new APIHandler('http://localhost:8000');
 
 window.addEventListener('load', () => {
   document.getElementById('fetch-all').addEventListener('click', function (event) {
-    APIHandler.getFullList ()
+    charactersAPI.getFullList ()
     .then(characters => {
         if (characters) {
             displayCharacters(characters);
@@ -19,7 +19,7 @@ window.addEventListener('load', () => {
 
     const characterId = document.querySelector('input[name="character-id"]').value;
     if (characterId) {
-        APIHandler.getOneRegister(characterId)
+      charactersAPI.getOneRegister(characterId)
             .then(character => {
                 if (character) {
                     // Display the character
@@ -40,7 +40,7 @@ window.addEventListener('load', () => {
 
     const characterId = document.querySelector('input[name="character-id-delete"]').value;
     if (characterId) {
-        APIHandler.deleteOneRegister(characterId)
+      charactersAPI.deleteOneRegister(characterId)
             .then(deletedCharacter => {
                 if (deletedCharacter) {
                     // Handle case where character is successfully deleted
@@ -69,7 +69,7 @@ window.addEventListener('load', () => {
         weapon: formData.get('weapon'),
         cartoon: formData.get('cartoon') === 'on' ? true : false
     };
-    APIHandler.updateOneRegister(characterId, updatedCharacterData)
+    charactersAPI.updateOneRegister(characterId, updatedCharacterData)
         .then(updatedCharacter => {
             if (updatedCharacter) {
                 // Handle case where character is successfully updated
@@ -92,7 +92,7 @@ window.addEventListener('load', () => {
             weapon: formData.get('weapon'),
             cartoon: formData.get('cartoon') === 'on' ? true : false
         };
-        APIHandler.createOneRegister(newCharacterData)
+        charactersAPI.createOneRegister(newCharacterData)
             .then(newCharacter => {
                 if (newCharacter) {
                     // Handle case where character is successfully created
